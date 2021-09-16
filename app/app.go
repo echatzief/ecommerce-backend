@@ -1,0 +1,37 @@
+package app 
+
+type Process struct {
+	name string
+	addr string
+	port string
+	secret string
+	env string
+}
+
+type App struct {
+	process Process
+}
+
+func (c App) GetApp() Process{
+	return c.process
+}
+
+func (a App) GetName() string{
+	return a.process.name
+}
+
+func (a App) GetAddr() string{
+	return a.process.addr
+}
+
+func (a App) GetPort() string{
+	return a.process.port
+}
+
+func (a App) GetSecret() string{
+	return a.process.secret
+}
+
+func (a App) GetEnv() string{
+	return a.process.env
+}
