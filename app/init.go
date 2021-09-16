@@ -1,6 +1,7 @@
 package app
 
-import "fmt"
+import "github.com/gin-gonic/gin"
+import "services/laiki-eu-backend/controllers"
 
 func InitializeApp() App{
 	c := App {
@@ -15,6 +16,17 @@ func InitializeApp() App{
 	return c;
 }
 
-func (a App) Start(){
-	fmt.Println(a.GetName())
+func (app App) Start(){
+
+	// Set the gin mode
+	if app.GetEnv() == "production" {
+		gin.SetMode(gin.ReleaseMode)
+	} else {
+		gin.SetMode(gin.DebugMode)
+	}
+
+	// Initialize the controllers and start the app 
+	router := gin.Default()
+	controllers.Setup(router)	
+	router.Run(app.GetAddr()+":"+app.GetPort())
 }
