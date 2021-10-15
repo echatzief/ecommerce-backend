@@ -1,8 +1,8 @@
 package main
 
-import "services/laiki-eu-backend/app"
+import "services/ecommerce-backend/app"
 
-func main(){
+func main() {
 
 	// Initialize the application with the necessary configs
 	app := app.InitializeApp()

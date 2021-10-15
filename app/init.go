@@ -1,31 +1,33 @@
 package app
 
-import "github.com/gin-gonic/gin"
-import "fmt"
-import "services/laiki-eu-backend/controllers"
 import (
 	"database/sql"
-  _ "github.com/go-sql-driver/mysql"
+	"fmt"
+	"services/ecommerce-backend/controllers"
+
+	"github.com/gin-gonic/gin"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
-func InitializeApp() App{
-	c := App {
-		process: Process {
-			name : "Laiki-EU-Backend",
-			addr: "0.0.0.0",
-			port: "8080",
+func InitializeApp() App {
+	c := App{
+		process: Process{
+			name:   "ecommerce-backend",
+			addr:   "0.0.0.0",
+			port:   "8080",
 			secret: "yVVQ6cOC0HdoISIb",
-			env: "development",
+			env:    "development",
 		},
-		database: Database {
-			name: "LaikiEU",
-			url: "root:rootroot@tcp(127.0.0.1:3306)/LaikiEU",
+		database: Database{
+			name: "ecommerce-database",
+			url:  "root:ecommerce@tcp(127.0.0.1:3306)/ecommerce-database",
 		},
 	}
-	return c;
+	return c
 }
 
-func (app App) Start(){
+func (app App) Start() {
 
 	// Set the gin mode
 	if app.GetEnv() == "production" {
@@ -44,15 +46,15 @@ func (app App) Start(){
 	// Initialize the database schema
 	schemaInitialization, err := conn.Query(schema)
 	if err != nil {
-			panic(err.Error())
+		panic(err.Error())
 	}
 	defer schemaInitialization.Close()
 
 	// Add the database handler to app configurations
 	fmt.Println("[LOG] Succesfully connected to the database and initialized the schema.")
 
-	// Initialize the controllers and start the app 
+	// Initialize the controllers and start the app
 	router := gin.Default()
 	controllers.Setup(router, conn)
-	router.Run(app.GetAddr()+":"+app.GetPort())
+	router.Run(app.GetAddr() + ":" + app.GetPort())
 }

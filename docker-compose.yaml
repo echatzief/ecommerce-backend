@@ -1,15 +1,15 @@
 version: '3.3'
 services:
-  laiki-eu-database:
-    platform: linux/x86_64
+  ecommerce-database:
+    # platform: linux/x86_64
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_DATABASE: 'LaikiEU'
-      MYSQL_ROOT_PASSWORD: 'rootroot'
+      MYSQL_DATABASE: 'ecommerce-database'
+      MYSQL_ROOT_PASSWORD: 'ecommerce'
     ports:
       - '3306:3306'
     volumes:
-      - laiki-eu-volume:/var/lib/mysql
+      - ecommerce-database-volume:/var/lib/mysql
 volumes:
-  laiki-eu-volume:
+ ecommerce-database-volume:

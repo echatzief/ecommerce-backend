@@ -1,14 +1,14 @@
-module services/laiki-eu-backend
+module services/ecommerce-backend
 
 go 1.17
 
-replace services/laiki-eu-backend/app => ./app
+replace services/ecommerce-backend/app => ./app
 
-replace services/laiki-eu-backend/controllers => ./controllers
+replace services/ecommerce-backend/controllers => ./controllers
 
-replace services/laiki-eu-backend/models => ./models
+replace services/ecommerce-backend/models => ./models
 
-replace services/laiki-eu-backend/helpers => ./helpers
+replace services/ecommerce-backend/helpers => ./helpers
 
 require (
 	github.com/gin-gonic/gin v1.7.4
