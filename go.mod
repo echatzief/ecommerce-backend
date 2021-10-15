@@ -6,7 +6,14 @@ replace services/laiki-eu-backend/app => ./app
 
 replace services/laiki-eu-backend/controllers => ./controllers
 
-require github.com/gin-gonic/gin v1.7.4
+replace services/laiki-eu-backend/models => ./models
+
+replace services/laiki-eu-backend/helpers => ./helpers
+
+require (
+	github.com/gin-gonic/gin v1.7.4
+	github.com/go-sql-driver/mysql v1.6.0
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect

@@ -1,4 +1,4 @@
-package app 
+package app
 
 type Process struct {
 	name string
@@ -8,9 +8,15 @@ type Process struct {
 	env string
 }
 
+type Database struct {
+	url string
+	name string
+}
 type App struct {
 	process Process
+	database Database
 }
+
 
 func (c App) GetApp() Process{
 	return c.process
@@ -34,4 +40,12 @@ func (a App) GetSecret() string{
 
 func (a App) GetEnv() string{
 	return a.process.env
+}
+
+func (a App) GetDatabaseURL() string{
+	return a.database.url
+}
+
+func (a App) GetDatabaseName() string{
+	return a.database.name
 }

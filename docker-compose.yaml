@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  laiki-eu-database:
+    platform: linux/x86_64
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'LaikiEU'
+      MYSQL_ROOT_PASSWORD: 'rootroot'
+    ports:
+      - '3306:3306'
+    volumes:
+      - laiki-eu-volume:/var/lib/mysql
+volumes:
+  laiki-eu-volume:
